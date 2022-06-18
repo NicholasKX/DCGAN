@@ -1,3 +1,3 @@
 # DCGAN
-Face generation
+Face generation;
 Machine learning course project
