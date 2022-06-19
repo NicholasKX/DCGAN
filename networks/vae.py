@@ -53,6 +53,10 @@ class VAE_Encoder(nn.Module):
         mu = self.l_mu(x)
         var = self.l_var(x)
         return mu,var
+    def reparameterize(self, mu, logvar):
+        logvar = logvar.mul(0.5).exp_()
+        eps = torch.tensor(logvar.data.new(logvar.size()).normal_(),requires_grad=True)
+        return eps.mul(logvar).add_(mu)
 
 if __name__ == '__main__':
     encoder = VAE_Encoder()
